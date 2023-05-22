@@ -2,7 +2,8 @@ let database = [{id:1,name:"john",age:"18",profession:"developer"},
                 {id:2, name:"jack",age:"20", profession:"developer"},
                 {id:3, name:"karen", age:"19",profession:"admin"}]
 let temp = document.getElementById("insert");
-function display(){
+function display(database){
+    temp.innerText = "";
     for(let i=0;i<database.length;i++){
     let elements = document.createElement("div");
     elements.className = "insertedNames";
@@ -10,8 +11,7 @@ function display(){
     temp.append(elements)
     }
 }
-
-display();
+display(database);
 let masterIndex = 4;
 function updateDataBase(){
     let values = document.getElementsByTagName("input");
@@ -32,18 +32,31 @@ function updateDataBase(){
         alert("please enter all values!")
     }
     
-    console.log(database);
+    display(database);
 
 
 }
 
-let forSelect = document.getElementById("forProfession");
-console.log(forSelect)
-function filter(){
-    let output = database.filter(function(element,index,database){
-        return element.profession=="developer";
+let forSelect = document.getElementsByTagName("select")[0];
+function filterUsers(){
+    let selected = forSelect.value;
+    alert(`you have selected ${selected}`);
+    
+    let filteredUsers = filteData(selected);
+    console.log(filteredUsers);
+    display(filteredUsers);
+    
+
+
+}
+
+function filteData(data){
+    if(data == ""){
+        return database;
+    }
+    let newList = database.filter((user)=>{
+        return user.profession == data;
     })
 
-    
-    console.log(output);
+    return newList;
 }
