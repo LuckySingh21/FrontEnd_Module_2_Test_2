@@ -22,11 +22,15 @@ function updateDataBase(){
     obj.age = values[2].value;
     database.push(obj);
 
-
-        let elements = document.createElement("div");
-        elements.className = "insertedNames";
-        elements.innerText = "ID: "+masterIndex + " Name: "+obj.name  + " Profession: "+obj.profession +" Age: "+ obj.age;
-        temp.append(elements);
+    if(obj.age !=="" && obj.id !== "" && obj.profession !==""){
+    let elements = document.createElement("div");
+    elements.className = "insertedNames";
+    elements.innerText = "ID: "+masterIndex + " Name: "+obj.name  + " Profession: "+obj.profession +" Age: "+ obj.age;
+    temp.append(elements);
+    }
+    else{
+        alert("please enter all values!")
+    }
     
     console.log(database);
 
